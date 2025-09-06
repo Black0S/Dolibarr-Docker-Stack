@@ -15,11 +15,11 @@ Cette stack Docker permet de déployer **Dolibarr** avec une configuration flexi
 - ✅ Service actif  
 - ❌ Service non créé
 
-> ⚠️ **IMAP is disabled by default** to prevent crashes in Dolibarr.
+⚠️ **IMAP is disabled by default** to prevent crashes in Dolibarr.
 
 ---
 
-1️⃣ **Apache sans phpMyAdmin**  
+1️⃣ Apache sans phpMyAdmin**  
 ```bash
 docker-compose --profile apache up -d
 ```
@@ -43,7 +43,6 @@ docker-compose down
 ---
 
 ## 🔹 Architecture de la stack
-
 - **Reverse Proxy** : [Traefik](https://traefik.io/) pour HTTPS, redirection HTTP → HTTPS et gestion automatique des certificats Let's Encrypt.
 - **Serveur Web** :
   - Nginx + PHP-FPM

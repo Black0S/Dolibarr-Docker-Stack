@@ -15,6 +15,27 @@ Cette stack Docker permet de déployer **Dolibarr** avec une configuration flexi
 - ✅ Service actif  
 - ❌ Service non créé
 
+1️⃣ **Apache sans phpMyAdmin**  
+```bash
+docker-compose --profile apache up -d
+```
+2️⃣ Apache avec phpMyAdmin
+```bash
+docker-compose --profile apache --profile phpmyadmin up -d
+```
+3️⃣ Nginx sans phpMyAdmin
+```bash
+docker-compose --profile nginx up -d
+```
+4️⃣ Nginx avec phpMyAdmin
+```bash
+docker-compose --profile nginx --profile phpmyadmin up -d
+```
+❌ Arrêter tous les services
+```bash
+docker-compose down
+```
+
 ---
 
 ## 🔹 Architecture de la stack
@@ -68,6 +89,7 @@ PHPMYADMIN_VERSION=5.3.1
 ```
 
 ---
+
 
 
 ---

@@ -11,14 +11,14 @@ Cette stack Docker permet de déployer **Dolibarr** avec une configuration flexi
   - Nginx + PHP-FPM
   - Apache + PHP intégré
 - **PHP** : versions 7.4, 8.2, 8.4 (Apache et FPM)
-- **Base de données** : MariaDB (10.11) ou MySQL (configurable via `.env`)
+- **Base de données** : MariaDB ou MySQL (configurable via `.env`)
 - **phpMyAdmin** : optionnel, profil activable pour la gestion de la base
 
 ---
 
 ## 🔹 Contenus du dépôt
 
-- `docker-compose.yml` : orchestration des services Docker  
+- `docker-compose.yaml` : orchestration des services Docker  
 - `.env` : variables d'environnement  
 - `nginx/default.conf` : configuration Nginx sécurisée et optimisée pour Dolibarr  
 - Dockerfiles :

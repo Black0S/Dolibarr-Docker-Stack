@@ -68,16 +68,6 @@ docker-compose down
 
 ---
 
-## 🔹 Architecture de la stack
-
-- **Reverse Proxy** : [Traefik](https://traefik.io/) pour HTTPS, redirection HTTP → HTTPS et gestion automatique des certificats Let's Encrypt.
-- **Serveur Web** :
-  - Nginx + PHP-FPM
-  - Apache + PHP intégré
-- **PHP** : versions 7.4, 8.2, 8.4 (Apache et FPM)
-- **Base de données** : MariaDB ou MySQL (configurable via `.env`)
-- **phpMyAdmin** : optionnel, profil activable pour la gestion de la base
-
 ## 🔹 Contenus du dépôt
 
 - `docker-compose.yaml` : orchestration des services Docker  
@@ -125,5 +115,3 @@ Si vous préférez utiliser un client externe plutôt que phpMyAdmin, voici nos 
 - **macOS (Apple Silicon)** :  
   - [Sequel Ace](https://apps.apple.com/fr/app/sequel-ace/id1518036000?mt=12) – gratuit, léger et performant
 
----
-<table width="100%"> <thead> <tr> <th align="left">Catégorie</th> <th align="left">Description / Avantages</th> </tr> </thead> <tbody> <tr> <td><strong>Architecture CPU</strong></td> <td>Choix entre <code>amd64</code> (x86/Intel/Windows) et <code>arm64</code> (Apple Silicon M1/M2). Permet de cibler différentes plateformes et optimise la compatibilité/performance.</td> </tr> <tr> <td><strong>Base de données</strong></td> <td>MariaDB ou MySQL — version configurable via <code>.env</code>. Choix selon compatibilité applicative, performances et support souhaité.</td> </tr> <tr> <td><strong>Paramétrage</strong></td> <td>Variables centralisées dans <code>.env</code> : ports, identifiants, images, versions. Modification rapide sans toucher aux fichiers Compose.</td> </tr> <tr> <td><strong>Versions PHP</strong></td> <td>Support PHP 7.4 / 8.2 / 8.4 ; possibilité d'utiliser Apache (PHP intégré) ou Nginx + PHP-FPM pour chaque version.</td> </tr> <tr> <td><strong>Traefik &amp; HTTPS</strong></td> <td>Reverse proxy automatique avec Let's Encrypt, redirection HTTP → HTTPS et HTTP/2 ready.</td> </tr> <tr> <td><strong>phpMyAdmin (optionnel)</strong></td> <td>Profil activable pour administration rapide de la base sans toucher au reste de la stack.</td> </tr> <tr> <td><strong>Multi-profil Docker</strong></td> <td>Lancez uniquement les services nécessaires (gain de ressources & simplicité pour dev/test/production).</td> </tr> <tr> <td><strong>Sécurité &amp; perf.</strong></td> <td>OPCache activé par défaut, headers de sécurité Nginx préconfigurés, compression gzip active pour assets statiques.</td> </tr> </tbody> </table>

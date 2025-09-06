@@ -95,7 +95,7 @@ docker-compose down
 
 ## 🔹 Configuration
 
-1. Ouvrir `.env` et ajuster les valeurs selon votre environnement :
+1. Ouvrir `.env` et ajuster les valeurs selon vos besoins :
 
 ```env
 ARCH=amd64

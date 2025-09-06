@@ -53,6 +53,19 @@ docker-compose --profile nginx --profile phpmyadmin up -d
 docker-compose down
 ```
 
+## 🔹 Comparatif technique visuel
+
+| Catégorie             | Option         | Avantages clés                                   | Inconvénients clés                               |
+|----------------------|----------------|-------------------------------------------------|-------------------------------------------------|
+| **Serveur Web**       | Nginx          | ✅ Haute performance<br>✅ Faible consommation mémoire<br>✅ Compatible PHP-FPM | ⚠ Pas de support `.htaccess`<br>⚠ Config globale requise |
+|                       | Apache         | ✅ Très compatible projets<br>✅ Support `.htaccess` | ⚠ Consommation mémoire plus élevée<br>⚠ Moins performant sous forte charge |
+| **Base de données**   | MariaDB        | ✅ Rapide et léger<br>✅ Compatible MySQL<br>✅ Communauté active | ⚠ Moins de support commercial officiel |
+|                       | MySQL          | ✅ Support commercial<br>✅ Large compatibilité outils | ⚠ Versions lourdes<br>⚠ Licence stricte pour usage commercial |
+| **PHP**               | 7.4            | ✅ Stable<br>✅ Compatible anciens projets<br>✅ Faible consommation | ⚠ Fin de support prochainement<br>⚠ Peu de nouvelles fonctionnalités |
+|                       | 8.2            | ✅ Performance et sécurité améliorées<br>✅ Syntaxe moderne | ⚠ Risque d’incompatibilité avec anciens scripts |
+|                       | 8.4            | ✅ Dernière version stable<br>✅ Meilleures performances | ⚠ Compatibilité avec anciens projets pas garantie |
+| **Cache PHP**         | OPcache        | ✅ Accélère exécution PHP<br>✅ Réduit charge CPU | ⚠ Nécessite réglage et supervision<br>⚠ Purge après mise à jour du code |
+
 ---
 
 ## 🔹 Architecture de la stack
@@ -101,30 +114,13 @@ PHPMYADMIN_VERSION=5.3.1
 
 ---
 
-## Structure des services Docker
+## 🔹 Clients externes pour la gestion de la base de données
 
-┌──────────────┐
-│   Traefik    │  Reverse Proxy HTTPS
-└─────┬────────┘
-      │
-      ├───────────────┐
-      │               │
-  ┌───▼────┐     ┌────▼────┐
-  │ Nginx  │     │ Apache  │
-  │ +FPM   │     │ +PHP    │
-  └───┬────┘     └────┬────┘
-      │               │
-      │               │
-  ┌───▼───────────────▼───┐
-  │       PHP-FPM / PHP      │
-  └─────────┬───────────────┘
-            │
-        ┌───▼───┐
-        │  DB   │  MariaDB / MySQL
-        └───┬───┘
-            │
-        ┌───▼───┐
-        │phpMyAdmin│ (optionnel)
-        └─────────┘
+Si vous préférez utiliser un client externe plutôt que phpMyAdmin, voici nos recommandations :
 
----
+- **Windows** :  
+  - [HeidiSQL](https://www.heidisql.com/) – gratuit, léger et efficace  
+  - [DBeaver](https://dbeaver.io/) – gratuit, multi-plateforme et puissant  
+
+- **macOS (Apple Silicon)** :  
+  - [Sequel Ace](https://apps.apple.com/fr/app/sequel-ace/id1518036000?mt=12) – gratuit, léger et performant

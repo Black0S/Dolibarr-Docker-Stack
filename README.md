@@ -2,6 +2,19 @@
 
 Cette stack Docker permet de déployer **Dolibarr** avec une configuration flexible multi-PHP, multi-serveur (Nginx ou Apache) et Traefik comme reverse proxy HTTPS.
 
+## 🔹 Lancer Dolibarr avec Docker Compose
+
+| Profil                         | traefik | db  | php-fpm | web-nginx | web-apache | phpmyadmin |
+|--------------------------------|:-------:|:---:|:-------:|:---------:|:----------:|:----------:|
+| Apache sans phpMyAdmin         | ✅      | ✅  | ❌      | ❌        | ✅         | ❌         |
+| Apache avec phpMyAdmin         | ✅      | ✅  | ❌      | ❌        | ✅         | ✅         |
+| Nginx sans phpMyAdmin          | ✅      | ✅  | ✅      | ✅        | ❌         | ❌         |
+| Nginx avec phpMyAdmin          | ✅      | ✅  | ✅      | ✅        | ❌         | ✅         |
+
+✅ Légende :  
+- ✅ Service actif  
+- ❌ Service non créé
+
 ---
 
 ## 🔹 Architecture de la stack
@@ -52,3 +65,10 @@ WEB_SERVER_IMAGE=nginx:1.26.3
 PHP_VERSION=8.4
 PHPMYADMIN_PORT=8082
 PHPMYADMIN_VERSION=5.3.1
+```
+
+---
+
+
+---
+

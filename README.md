@@ -15,6 +15,19 @@ Cette stack Docker permet de déployer **Dolibarr** avec une configuration flexi
 - ✅ Service actif  
 - ❌ Service non créé
 
+## 🔹 Avantages de la stack Docker
+
+| Catégorie                  | Description / Avantages                                                                                 |
+|-----------------------------|--------------------------------------------------------------------------------------------------------|
+| **Architecture CPU**        | Choix entre `amd64` (x86/Intel/Windows) et `arm64` (Apple Silicon M1/M2). Compatible multi-plateformes.|
+| **Base de données**         | MariaDB ou MySQL, version configurable via `.env`. Permet d’adapter selon compatibilité et performance.|
+| **Paramétrage**             | Variables d’environnement centralisées dans `.env`. Facile à modifier pour ports, utilisateurs, mots de passe et images. |
+| **Versions PHP**            | Support des versions PHP 7.4, 8.2 et 8.4. Choix entre Apache intégré ou Nginx + PHP-FPM pour flexibilité. |
+| **Traefik & HTTPS**         | Reverse proxy automatique avec gestion de certificats Let’s Encrypt, redirection HTTP → HTTPS, HTTP/2. |
+| **phpMyAdmin (optionnel)**  | Profil activable pour une gestion simple de la base de données, sans impacter le reste de la stack.    |
+| **Multi-profil Docker**     | Possibilité de lancer uniquement les services nécessaires : Nginx ou Apache, avec ou sans phpMyAdmin.  |
+| **Sécurité & Performances** | OPCache activé sur toutes les versions PHP, headers de sécurité Nginx configurés, compression Gzip activée. |
+
 ⚠️ **IMAP is disabled by default** to prevent crashes in Dolibarr.
 
 ---
@@ -88,3 +101,30 @@ PHPMYADMIN_VERSION=5.3.1
 
 ---
 
+## Structure des services Docker
+
+┌──────────────┐
+│   Traefik    │  Reverse Proxy HTTPS
+└─────┬────────┘
+      │
+      ├───────────────┐
+      │               │
+  ┌───▼────┐     ┌────▼────┐
+  │ Nginx  │     │ Apache  │
+  │ +FPM   │     │ +PHP    │
+  └───┬────┘     └────┬────┘
+      │               │
+      │               │
+  ┌───▼───────────────▼───┐
+  │       PHP-FPM / PHP      │
+  └─────────┬───────────────┘
+            │
+        ┌───▼───┐
+        │  DB   │  MariaDB / MySQL
+        └───┬───┘
+            │
+        ┌───▼───┐
+        │phpMyAdmin│ (optionnel)
+        └─────────┘
+
+---

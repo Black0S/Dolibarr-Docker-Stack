@@ -15,6 +15,10 @@ Cette stack Docker permet de déployer **Dolibarr** avec une configuration flexi
 - ✅ Service actif  
 - ❌ Service non créé
 
+> ⚠️ **IMAP is disabled by default** to prevent crashes in Dolibarr.
+
+---
+
 1️⃣ **Apache sans phpMyAdmin**  
 ```bash
 docker-compose --profile apache up -d

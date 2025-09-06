@@ -33,3 +33,27 @@ docker-compose --profile nginx --profile phpmyadmin up -d
 
 Arrêter tous les services
 docker-compose down
+
+┌──────────────┐
+│   Traefik    │  Reverse Proxy HTTPS
+└─────┬────────┘
+      │
+      ├───────────────┐
+      │               │
+  ┌───▼────┐     ┌────▼────┐
+  │ Nginx  │     │ Apache  │
+  │ +FPM   │     │ +PHP    │
+  └───┬────┘     └────┬────┘
+      │               │
+      │               │
+  ┌───▼───────────────▼───┐
+  │       PHP-FPM / PHP      │
+  └─────────┬───────────────┘
+            │
+        ┌───▼───┐
+        │  DB   │  MariaDB / MySQL
+        └───┬───┘
+            │
+        ┌───▼───┐
+        │phpMyAdmin│ (optionnel)
+        └─────────┘

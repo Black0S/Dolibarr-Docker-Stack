@@ -43,6 +43,7 @@ docker-compose down
 ---
 
 ## 🔹 Architecture de la stack
+
 - **Reverse Proxy** : [Traefik](https://traefik.io/) pour HTTPS, redirection HTTP → HTTPS et gestion automatique des certificats Let's Encrypt.
 - **Serveur Web** :
   - Nginx + PHP-FPM
@@ -50,8 +51,6 @@ docker-compose down
 - **PHP** : versions 7.4, 8.2, 8.4 (Apache et FPM)
 - **Base de données** : MariaDB ou MySQL (configurable via `.env`)
 - **phpMyAdmin** : optionnel, profil activable pour la gestion de la base
-
----
 
 ## 🔹 Contenus du dépôt
 
@@ -63,14 +62,10 @@ docker-compose down
   - `php-8.2.Dockerfile` et `php-8.2-fpm.Dockerfile`
   - `php-8.4.Dockerfile` et `php-8.4-fpm.Dockerfile`
 
----
-
 ## 🔹 Pré-requis
 
 - Docker 20.10+  
 - Docker Compose 2.0+
-  
----
 
 ## 🔹 Configuration
 
@@ -90,10 +85,6 @@ PHP_VERSION=8.4
 PHPMYADMIN_PORT=8082
 PHPMYADMIN_VERSION=5.3.1
 ```
-
----
-
-
 
 ---
 

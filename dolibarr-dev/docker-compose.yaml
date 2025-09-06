@@ -1,0 +1,138 @@
+version: "3.9"
+
+services:
+  # -------------------
+  # Traefik : reverse proxy HTTPS
+  # -------------------
+  traefik:
+    image: traefik:latest
+    platform: "linux/${ARCH}"
+    command:
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.websecure.address=:443"
+      - "--certificatesresolvers.myresolver.acme.tlschallenge=true"
+      - "--certificatesresolvers.myresolver.acme.email=localhost@email.com"
+      - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
+    ports:
+      - "443:443"
+      - "8080:8080"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - "../letsencrypt:/letsencrypt"
+
+  # -------------------
+  # PHP-FPM (uniquement pour Nginx)
+  # -------------------
+  php-fpm:
+    build:
+      context: ../php-dockerfile
+      dockerfile: ${PHP_DOCKERFILE_FPM}
+    volumes:
+      - "../dolibarr-core/dolibarr-22.0.1:/var/www/html/dolibarr:rw"
+      - "../custom:/var/www/html/dolibarr/htdocs/custom:rw"
+      - "../conf:/var/www/html/dolibarr/htdocs/conf:rw"
+    profiles:
+      - nginx
+    labels:
+      - "traefik.enable=false"
+
+  # -------------------
+  # Nginx
+  # -------------------
+  web-nginx:
+    image: ${WEB_SERVER_IMAGE}
+    depends_on:
+      - php-fpm
+    volumes:
+      - "../dolibarr-core/dolibarr-22.0.1:/var/www/html/dolibarr:ro"
+      - "../custom:/var/www/html/dolibarr/htdocs/custom:ro"
+      - "../conf:/var/www/html/dolibarr/htdocs/conf:ro"
+      - ../nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.dolibarr.rule=Host(`localhost`)"
+      - "traefik.http.routers.dolibarr.entrypoints=websecure"
+      - "traefik.http.routers.dolibarr.tls=true"
+      - "traefik.http.routers.dolibarr.tls.certresolver=myresolver"
+    ports:
+      - "${WEB_SERVER_PORT:-80}:80"
+    profiles:
+      - nginx
+
+  # -------------------
+  # Apache avec PHP (build local)
+  # -------------------
+  web-apache:
+    build:
+      context: ../php-dockerfile
+      dockerfile: ${PHP_DOCKERFILE}
+    volumes:
+      - "../dolibarr-core/dolibarr-22.0.1:/var/www/html/dolibarr:ro"
+      - "../custom:/var/www/html/dolibarr/htdocs/custom:ro"
+      - "../conf:/var/www/html/dolibarr/htdocs/conf:ro"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.dolibarr.rule=Host(`localhost`)"
+      - "traefik.http.routers.dolibarr.entrypoints=websecure"
+      - "traefik.http.routers.dolibarr.tls=true"
+      - "traefik.http.routers.dolibarr.tls.certresolver=myresolver"
+    ports:
+      - "${WEB_SERVER_PORT:-80}:80"
+    profiles:
+      - apache
+
+  # -------------------
+  # Base de données
+  # -------------------
+  db:
+    platform: "linux/${ARCH}"
+    image: ${DB_IMAGE}
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - dbdata:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    labels:
+      - "traefik.enable=false"
+
+  # -------------------
+  # phpMyAdmin (optionnel)
+  # -------------------
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:${PHPMYADMIN_VERSION}
+    platform: "linux/${ARCH}"
+    depends_on:
+      - db
+    environment:
+      PMA_HOST: db
+      PMA_USER: ${DB_USER}
+      PMA_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "${PHPMYADMIN_PORT}:80"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.phpmyadmin.rule=Host(`localhost`) && PathPrefix(`/phpmyadmin`)"
+      - "traefik.http.routers.phpmyadmin.entrypoints=websecure"
+      - "traefik.http.routers.phpmyadmin.tls=true"
+      - "traefik.http.routers.phpmyadmin.tls.certresolver=myresolver"
+    profiles:
+      - phpmyadmin
+
+# -------------------
+# Volumes
+# -------------------
+volumes:
+  dbdata:
+
+# -------------------
+# Réseau
+# -------------------
+networks:
+  default:
+    name: "traefikNetwork"

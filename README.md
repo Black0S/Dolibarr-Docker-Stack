@@ -34,6 +34,8 @@ Cette stack Docker permet de déployer **Dolibarr** avec une configuration flexi
 
 ### Commandes Docker Compose
 
+⚠️ **BEFORE do the DOCKER-COMPOSE UP verrify .env is set as you want (CORRECTELLY) / ALLWAYS**
+
 1️⃣ Apache sans phpMyAdmin**  
 ```bash
 docker-compose --profile apache up -d

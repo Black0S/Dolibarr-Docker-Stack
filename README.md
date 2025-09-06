@@ -37,7 +37,7 @@ Cette stack Docker permet de déployer **Dolibarr** avec une configuration flexi
 
 ## 🔹 Configuration
 
-1. Copier `.env.example` en `.env` et ajuster les valeurs selon votre environnement :
+1. Ouvrir `.env` et ajuster les valeurs selon votre environnement :
 
 ```env
 ARCH=amd64

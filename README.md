@@ -31,9 +31,8 @@ Cette stack Docker permet de déployer **Dolibarr** avec une configuration flexi
 ## 🔹 Pré-requis
 
 - Docker 20.10+  
-- Docker Compose 2.0+  
-- Accès réseau pour Traefik (ports 80 et 443)
-
+- Docker Compose 2.0+
+  
 ---
 
 ## 🔹 Configuration

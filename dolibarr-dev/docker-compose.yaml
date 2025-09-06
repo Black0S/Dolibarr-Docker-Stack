@@ -42,7 +42,7 @@ services:
   # Nginx
   # -------------------
   web-nginx:
-    image: ${WEB_NGINX_SERVER_IMAGE}
+    image: ${WEB_SERVER_IMAGE}
     depends_on:
       - php-fpm
     volumes:
@@ -136,4 +136,5 @@ volumes:
 networks:
   default:
     name: "traefikNetwork"
+
 

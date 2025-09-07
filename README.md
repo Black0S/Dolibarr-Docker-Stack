@@ -85,10 +85,14 @@ Lors du premier accès à Dolibarr, suivez l'assistant d'installation. Le fichie
   docker-compose down
   ```
 - **Changer de serveur web** :
-  - Arrêtez la stack : ```bash
-    docker-compose down```
-  - Relancez avec un nouveau profil ```bash
-    docker-compose --profile caddy up -d```
+  - Arrêtez la stack :
+    ```bash
+    docker-compose down
+    ```
+  - Relancez avec un nouveau profil
+    ```bash
+    docker-compose --profile caddy up -d
+    ```
 
 ## ⚖️ Comparatif des Serveurs Web
 

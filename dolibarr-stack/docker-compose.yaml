@@ -1,0 +1,176 @@
+version: "3.9"
+
+services:
+  # -------------------
+  # Traefik : reverse proxy HTTPS
+  # -------------------
+  traefik:
+    image: traefik:latest
+    platform: "linux/${ARCH}"
+    command:
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
+      - "--entrypoints.websecure.address=:443"
+      - "--entrypoints.web.http.redirections.entrypoint.to=websecure"
+      - "--entrypoints.web.http.redirections.entrypoint.scheme=https"
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8080:8080"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - "../letsencrypt:/letsencrypt"
+
+  # -------------------
+  # PHP-FPM (uniquement pour Nginx,ou Caddy ou Lighttpd)
+  # -------------------
+  php-fpm:
+    build:
+      context: ../php-dockerfile
+      dockerfile: ${PHP_DOCKERFILE_FPM}
+    platform: "linux/${ARCH}"
+    volumes:
+      - "../dolibarr-core/${DOLIBARR_VERSION}:/var/www/html/dolibarr:rw"
+      - "../custom:/var/www/html/dolibarr/htdocs/custom:rw"
+      - "../conf:/var/www/html/dolibarr/htdocs/conf:rw"
+    profiles:
+      - nginx
+    labels:
+      - "traefik.enable=false"
+
+  # -------------------
+  # Nginx
+  # -------------------
+  web-nginx:
+    image: ${WEB_SERVER_IMAGE_NGINX}
+    platform: "linux/${ARCH}"
+    depends_on:
+      - php-fpm
+    volumes:
+      - "../dolibarr-core/${DOLIBARR_VERSION}:/var/www/html/dolibarr:ro"
+      - "../custom:/var/www/html/dolibarr/htdocs/custom:ro"
+      - "../conf:/var/www/html/dolibarr/htdocs/conf:ro"
+      - "../nginx/default.conf:/etc/nginx/conf.d/default.conf:ro"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.dolibarr.rule=Host(`localhost`)"
+      - "traefik.http.routers.dolibarr.entrypoints=websecure"
+      - "traefik.http.routers.dolibarr.tls=true"
+    profiles:
+      - nginx
+
+# -------------------
+  # Caddy
+  # -------------------
+  web-caddy:
+    image: ${WEB_SERVER_IMAGE_CADDY}
+    platform: "linux/${ARCH}"
+    depends_on:
+      - php-fpm
+    volumes:
+      - "../dolibarr-core/${DOLIBARR_VERSION}:/var/www/html/dolibarr:ro"
+      - "../custom:/var/www/html/dolibarr/htdocs/custom:ro"
+      - "../conf:/var/www/html/dolibarr/htdocs/conf:ro"
+      - "../caddy/Caddyfile:/etc/caddy/Caddyfile:ro"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.dolibarr-caddy.rule=Host(`caddy.localhost`)"
+      - "traefik.http.routers.dolibarr-caddy.entrypoints=websecure"
+      - "traefik.http.routers.dolibarr-caddy.tls=true"
+    profiles:
+      - caddy
+
+  # -------------------
+  # Lighttpd
+  # -------------------
+  web-lighttpd:
+    image: ${WEB_SERVER_IMAGE_LIGHTTPD}
+    platform: "linux/${ARCH}"
+    depends_on:
+      - php-fpm
+    volumes:
+      - "../dolibarr-core/${DOLIBARR_VERSION}:/var/www/html/dolibarr:ro"
+      - "../custom:/var/www/html/dolibarr/htdocs/custom:ro"
+      - "../conf:/var/www/html/dolibarr/htdocs/conf:ro"
+      - "../lighttpd/lighttpd.conf:/etc/lighttpd/lighttpd.conf:ro"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.dolibarr-lighttpd.rule=Host(`lighttpd.localhost`)"
+      - "traefik.http.routers.dolibarr-lighttpd.entrypoints=websecure"
+      - "traefik.http.routers.dolibarr-lighttpd.tls=true"
+    profiles:
+      - lighttpd
+
+  # -------------------
+  # Apache avec PHP intégré
+  # -------------------
+  web-apache:
+    build:
+      context: ../php-dockerfile
+      dockerfile: ${PHP_DOCKERFILE}
+    platform: "linux/${ARCH}"
+    volumes:
+      - "../dolibarr-core/${DOLIBARR_VERSION}:/var/www/html/dolibarr:rw"
+      - "../custom:/var/www/html/dolibarr/htdocs/custom:rw"
+      - "../conf:/var/www/html/dolibarr/htdocs/conf:rw"
+      - "../apache/dolibarr.conf:/etc/apache2/sites-enabled/000-default.conf:ro"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.dolibarr.rule=Host(`localhost`)"
+      - "traefik.http.routers.dolibarr.entrypoints=websecure"
+      - "traefik.http.routers.dolibarr.tls=true"
+    profiles:
+      - apache
+
+  # -------------------
+  # Base de données
+  # -------------------
+  dbsql:
+    image: ${DB_IMAGE}
+    platform: "linux/${ARCH}"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - dbdata:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    labels:
+      - "traefik.enable=false"
+
+  # -------------------
+  # phpMyAdmin (optionnel)
+  # -------------------
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:${PHPMYADMIN_VERSION}
+    platform: "linux/${ARCH}"
+    depends_on:
+      - dbsql
+    environment:
+      PMA_HOST: dbsql
+      PMA_USER: ${DB_USER}
+      PMA_PASSWORD: ${DB_PASSWORD}
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.phpmyadmin.rule=Host(`pma.localhost`)"
+      - "traefik.http.routers.phpmyadmin.entrypoints=websecure"
+      - "traefik.http.routers.phpmyadmin.tls=true"
+    profiles:
+      - phpmyadmin
+
+# -------------------
+# Volumes
+# -------------------
+volumes:
+  dbdata:
+
+# -------------------
+# Réseau
+# -------------------
+networks:
+  default:
+    name: "traefikNetwork"

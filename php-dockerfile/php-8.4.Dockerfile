@@ -1,4 +1,4 @@
-FROM php:8.4
+FROM php:8.4-apache
 
 # -------------------
 # Installer dépendances et extensions PHP nécessaires
@@ -21,11 +21,5 @@ RUN echo "opcache.memory_consumption=128" >> /usr/local/etc/php/conf.d/docker-ph
  && echo "opcache.validate_timestamps=1" >> /usr/local/etc/php/conf.d/docker-php-ext-opcache.ini \
  && echo "opcache.enable_cli=1" >> /usr/local/etc/php/conf.d/docker-php-ext-opcache.ini
 
-# -------------------
-# Sécurité et utilisateur non-root
-# -------------------
-RUN useradd -ms /bin/bash www && chown -R www:www /var/www/html
-USER www
-
 WORKDIR /var/www/html
-EXPOSE 9000
+EXPOSE 80

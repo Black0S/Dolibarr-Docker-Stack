@@ -1,6 +1,6 @@
 # 🚀 Dolibarr Docker Stack
 
-[![Dolibarr](https://img.shields.io/badge/Dolibarr-blue)](https://www.dolibarr.org/) [![Docker](https://img.shields.io/badge/Docker-blue)](https://www.docker.com/) [![Traefik](https://img.shields.io/badge/Traefik-blue)](https://traefik.io/) [![PHP](https://img.shields.io/badge/PHP-8.2_|_8.4-blue.svg)](https://www.php.net/)
+[![Dolibarr](https://img.shields.io/badge/Dolibarr-blue)](https://www.dolibarr.org/) [![Docker](https://img.shields.io/badge/Docker-blue)](https://www.docker.com/) [![Traefik](https://img.shields.io/badge/Traefik-blue)](https://traefik.io/) [![PHP](https://img.shields.io/badge/PHP-8.4_|_8.2|_7.4-blue.svg)](https://www.php.net/)
 
 Un environnement de développement local **complet, flexible et performant** pour **Dolibarr ERP/CRM**, propulsé par Docker et Traefik. Choisissez votre serveur web (Nginx, Apache, Caddy, Lighttpd) et lancez votre stack en une seule commande.
 

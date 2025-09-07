@@ -52,6 +52,22 @@ docker-compose --profile nginx up -d
 ```bash
 docker-compose --profile nginx --profile phpmyadmin up -d
 ```
+5️⃣ Caddy sans phpMyAdmin
+```bash
+docker-compose --profile caddy up -d
+```
+6️⃣ Caddy avec phpMyAdmin
+```bash
+docker-compose --profile caddy --profile phpmyadmin up -d
+```
+7️⃣ Lighttpd sans phpMyAdmin
+```bash
+docker-compose --profile lighttpd up -d
+```
+8️⃣ Lighttpd avec phpMyAdmin
+```bash
+docker-compose --profile lighttpd --profile phpmyadmin up -d
+```
 ❌ Arrêter tous les services
 ```bash
 docker-compose down

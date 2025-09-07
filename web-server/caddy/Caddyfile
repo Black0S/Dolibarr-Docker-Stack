@@ -1,0 +1,24 @@
+{
+    auto_https off
+    admin off
+}
+
+:80 {
+    root * /var/www/html/dolibarr/htdocs
+
+    # Protection du répertoire de configuration
+    @forbidden path /conf/*
+    respond @forbidden 403
+
+    # Gestion PHP via FastCGI
+    php_fastcgi php-fpm:9000
+
+    # Servir les fichiers statiques
+    file_server
+
+    # Logs
+    log {
+        output stdout
+        format console
+    }
+}

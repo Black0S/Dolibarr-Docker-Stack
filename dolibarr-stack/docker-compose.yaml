@@ -24,7 +24,7 @@ services:
       - "../letsencrypt:/letsencrypt"
 
   # -------------------
-  # PHP-FPM (uniquement pour Nginx,ou Caddy ou Lighttpd)
+  # PHP-FPM (uniquement pour Nginx, Caddy ou Lighttpd)
   # -------------------
   php-fpm:
     build:
@@ -37,6 +37,8 @@ services:
       - "../conf:/var/www/html/dolibarr/htdocs/conf:rw"
     profiles:
       - nginx
+      - caddy
+      - lighttpd
     labels:
       - "traefik.enable=false"
 
@@ -52,7 +54,7 @@ services:
       - "../dolibarr-core/${DOLIBARR_VERSION}:/var/www/html/dolibarr:ro"
       - "../custom:/var/www/html/dolibarr/htdocs/custom:ro"
       - "../conf:/var/www/html/dolibarr/htdocs/conf:ro"
-      - "../nginx/default.conf:/etc/nginx/conf.d/default.conf:ro"
+      - "../web-server/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro"
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.dolibarr.rule=Host(`localhost`)"
@@ -73,12 +75,12 @@ services:
       - "../dolibarr-core/${DOLIBARR_VERSION}:/var/www/html/dolibarr:ro"
       - "../custom:/var/www/html/dolibarr/htdocs/custom:ro"
       - "../conf:/var/www/html/dolibarr/htdocs/conf:ro"
-      - "../caddy/Caddyfile:/etc/caddy/Caddyfile:ro"
+      - "../web-server/caddy/Caddyfile:/etc/caddy/Caddyfile:ro"
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.dolibarr-caddy.rule=Host(`caddy.localhost`)"
-      - "traefik.http.routers.dolibarr-caddy.entrypoints=websecure"
-      - "traefik.http.routers.dolibarr-caddy.tls=true"
+      - "traefik.http.routers.dolibarr.rule=Host(`localhost`)"
+      - "traefik.http.routers.dolibarr.entrypoints=websecure"
+      - "traefik.http.routers.dolibarr.tls=true"
     profiles:
       - caddy
 
@@ -94,12 +96,12 @@ services:
       - "../dolibarr-core/${DOLIBARR_VERSION}:/var/www/html/dolibarr:ro"
       - "../custom:/var/www/html/dolibarr/htdocs/custom:ro"
       - "../conf:/var/www/html/dolibarr/htdocs/conf:ro"
-      - "../lighttpd/lighttpd.conf:/etc/lighttpd/lighttpd.conf:ro"
+      - "../web-server/lighttpd/lighttpd.conf:/etc/lighttpd/lighttpd.conf:ro"
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.dolibarr-lighttpd.rule=Host(`lighttpd.localhost`)"
-      - "traefik.http.routers.dolibarr-lighttpd.entrypoints=websecure"
-      - "traefik.http.routers.dolibarr-lighttpd.tls=true"
+      - "traefik.http.routers.dolibarr.rule=Host(`localhost`)"
+      - "traefik.http.routers.dolibarr.entrypoints=websecure"
+      - "traefik.http.routers.dolibarr.tls=true"
     profiles:
       - lighttpd
 
@@ -115,7 +117,7 @@ services:
       - "../dolibarr-core/${DOLIBARR_VERSION}:/var/www/html/dolibarr:rw"
       - "../custom:/var/www/html/dolibarr/htdocs/custom:rw"
       - "../conf:/var/www/html/dolibarr/htdocs/conf:rw"
-      - "../apache/dolibarr.conf:/etc/apache2/sites-enabled/000-default.conf:ro"
+      - "../web-server/apache/dolibarr.conf:/etc/apache2/sites-enabled/000-default.conf:ro"
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.dolibarr.rule=Host(`localhost`)"

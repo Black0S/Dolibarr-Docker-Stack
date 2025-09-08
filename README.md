@@ -62,8 +62,8 @@ Le fichier `dolibarr-stack/.env` est le centre de votre configuration.
 
 Placez-vous dans le dossier `dolibarr-stack/` et exécutez l'une des commandes ci-dessous selon votre choix de serveur web.
 
-| Serveur Web | Commande de base                             | Avec phpMyAdmin                                          |
-|-------------|----------------------------------------------|----------------------------------------------------------|
+| Serveur Web | Commande de base                             | Avec phpMyAdmin                                                |
+|-------------|----------------------------------------------|----------------------------------------------------------------|
 | **Nginx**   | `docker-compose --profile nginx up -d`       | `docker-compose --profile nginx --profile phpmyadmin up -d`    |
 | **Apache**  | `docker-compose --profile apache up -d`      | `docker-compose --profile apache --profile phpmyadmin up -d`   |
 | **Caddy**   | `docker-compose --profile caddy up -d`       | `docker-compose --profile caddy --profile phpmyadmin up -d`    |
@@ -97,28 +97,32 @@ Lors du premier accès à Dolibarr, suivez l'assistant d'installation. Le fichie
 
 ## ⚖️ Comparatif des Serveurs Web & Base de Données
 
-| Serveur   | Avantages                                       | Inconvénients                               | Idéal pour...                               |
-|-----------|-------------------------------------------------|---------------------------------------------|---------------------------------------------|
-| **Nginx** | Haute performance, faible consommation mémoire  | Pas de `.htaccess`, configuration globale   | Projets à fort trafic, applications modernes |
-| **Apache**| Grande compatibilité, support `.htaccess`       | Plus lourd, moins performant sous charge    | Projets legacy, besoin de flexibilité via `.htaccess` |
-| **Caddy** | Configuration simple, HTTPS automatique natif   | Moins répandu, communauté plus petite       | Simplicité et sécurité "out-of-the-box"     |
-| **Lighttpd**| Extrêmement léger, très rapide pour les statiques | Moins de fonctionnalités avancées          | Environnements avec très peu de ressources  |
+| Serveur   | Avantages                                           | Inconvénients                               | Idéal pour...                                         |
+|-----------|-----------------------------------------------------|---------------------------------------------|-------------------------------------------------------|
+| **Nginx** | Haute performance, faible consommation mémoire      | Pas de `.htaccess`, configuration globale   | Projets à fort trafic, applications modernes          |
+| **Apache**| Grande compatibilité, support `.htaccess`           | Plus lourd, moins performant sous charge    | Projets legacy, besoin de flexibilité via `.htaccess` |
+| **Caddy** | Configuration simple, HTTPS automatique natif       | Moins répandu, communauté plus petite       | Simplicité et sécurité "out-of-the-box"               |
+| **Lighttpd**| Extrêmement léger, très rapide pour les statiques | Moins de fonctionnalités avancées           | Environnements avec très peu de ressources            |
 
 ## ⚖️ Comparatif des Bases de Données
 
-| Base       | Avantages                                                   | Inconvénients                                  | Idéal pour...                                   |
-|------------|-------------------------------------------------------------|-----------------------------------------------|------------------------------------------------|
-| **MariaDB**| Open source à 100 %, rapide, optimisée pour les lectures, souvent plus légère que MySQL | Moins de support officiel pour certaines apps, compatibilité MySQL pas toujours parfaite sur les dernières features | Projets libres, besoin de performance en lecture, alternative open source |
-| **MySQL**  | Large communauté, support Oracle, très compatible avec la majorité des applications | Licence moins libre (GPL + clauses Oracle), parfois plus lourd que MariaDB | Projets avec forte compatibilité logicielle, environnements pro qui veulent un support officiel |
+| Base           | Avantages                                   | Inconvénients                             |
+|----------------|---------------------------------------------|-------------------------------------------|
+| **MariaDB**    | Open source, rapide, légère                 | Compatibilité MySQL pas toujours parfaite |
+| **MySQL**      | Large communauté, très compatible           | Licence moins libre, un peu plus lourd    |
+| **PostgreSQL** | Très robuste, transactions ACID, extensions | Plus complexe pour les débutants          |
+
+
 
 ## 🗄️ Gestion de base de données (hors phpMyAdmin)
 
-| Application                                                               | OS               | Licence          | Bases compatibles                                            | Idéal pour…                                                      |
-|---------------------------------------------------------------------------|------------------|------------------|--------------------------------------------------------------|------------------------------------------------------------------|
-| [HeidiSQL](https://www.heidisql.com/)                                     | Windows          | Gratuit          | MySQL, MariaDB, PostgreSQL, SQL Server                       | Utilisateurs Windows qui veulent un outil rapide et léger        |
-| [DBeaver](https://dbeaver.io/)                                            | Windows, MacOS   | Gratuit-Freemium | MySQL, MariaDB, PostgreSQL, Oracle, SQL Server, SQLite, etc. | Multi-OS, équipes travaillant sur plusieurs types de bases       |
-| [DbVisualizer](https://www.dbvis.com/)                                    | Windows, MacOS   | Freemium         | MySQL, MariaDB, PostgreSQL, Oracle, SQL Server               | Professionnels ou développeurs ayant besoin d’une interface avancée multi-base |
-| [Sequel Ace](https://apps.apple.com/fr/app/sequel-ace/id1518036000?mt=12) | MacOS            | Gratuit          | MySQL, MariaDB                                               | Utilisateurs macOS qui veulent un outil simple et performant     |
+| Application                                                               | OS             | Licence            | Bases compatibles                                            |
+|---------------------------------------------------------------------------|----------------|--------------------|--------------------------------------------------------------|
+| [HeidiSQL](https://www.heidisql.com/)                                     | Windows        | Gratuit            | MySQL, MariaDB, PostgreSQL, SQL Server                       |
+| [DBeaver](https://dbeaver.io/)                                            | Windows, MacOS | Gratuit / Freemium | MySQL, MariaDB, PostgreSQL, Oracle, SQL Server, SQLite, etc. |
+| [DbVisualizer](https://www.dbvis.com/)                                    | Windows, MacOS | Freemium           | MySQL, MariaDB, PostgreSQL, Oracle, SQL Server               |
+| [Sequel Ace](https://apps.apple.com/fr/app/sequel-ace/id1518036000?mt=12) | MacOS          | Gratuit            | MySQL, MariaDB                                               |
+
 
 ## 🤝 Contribution
 

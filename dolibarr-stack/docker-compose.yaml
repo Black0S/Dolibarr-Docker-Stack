@@ -15,14 +15,14 @@ services:
       # - "--entrypoints.websecure.address=:443"
       # - "--entrypoints.web.http.redirections.entrypoint.to=websecure"
       # - "--entrypoints.web.http.redirections.entrypoint.scheme=https"
-    ports:ports:
+    ports:
       - "80:80"
       - "8080:8080"
       # HTTPS 
       # - "443:443"
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
-      - "../letsencrypt:/letsencrypt"
+    #  - "../letsencrypt:/letsencrypt"
 
   # -------------------
   # PHP-FPM (uniquement pour Nginx, Caddy ou Lighttpd)
@@ -58,7 +58,7 @@ services:
       - "../web-server/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro"
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.dolibarr.rule=Host(`localhost`)"
+      - "traefik.http.routers.dolibarr.rule=Host(`localhost`) || Host(`lvh.me`)"
       - "traefik.http.routers.dolibarr.entrypoints=web"
       # - "traefik.http.routers.dolibarr.tls=true"
     profiles:
@@ -79,7 +79,7 @@ services:
       - "../web-server/caddy/Caddyfile:/etc/caddy/Caddyfile:ro"
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.dolibarr.rule=Host(`localhost`)"
+      - "traefik.http.routers.dolibarr.rule=Host(`localhost`) || Host(`lvh.me`)"
       - "traefik.http.routers.dolibarr.entrypoints=web"
       # - "traefik.http.routers.dolibarr.tls=true"
     profiles:
@@ -100,7 +100,7 @@ services:
       - "../web-server/lighttpd/lighttpd.conf:/etc/lighttpd/lighttpd.conf:ro"
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.dolibarr.rule=Host(`localhost`)"
+      - "traefik.http.routers.dolibarr.rule=Host(`localhost`) || Host(`lvh.me`)"
       - "traefik.http.routers.dolibarr.entrypoints=web"
       # - "traefik.http.routers.dolibarr.tls=true"
     profiles:
@@ -121,7 +121,7 @@ services:
       - "../web-server/apache/dolibarr.conf:/etc/apache2/sites-enabled/000-default.conf:ro"
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.dolibarr.rule=Host(`localhost`)"
+      - "traefik.http.routers.dolibarr.rule=Host(`localhost`) || Host(`lvh.me`)"
       - "traefik.http.routers.dolibarr.entrypoints=web"
       # - "traefik.http.routers.dolibarr.tls=true"
     profiles:
@@ -158,10 +158,11 @@ services:
       PMA_USER: ${DB_USER}
       PMA_PASSWORD: ${DB_PASSWORD}
     labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.phpmyadmin.rule=Host(`pma.localhost`)"
-      - "traefik.http.routers.phpmyadmin.entrypoints=web"
-      # - "traefik.http.routers.phpmyadmin.tls=true"
+    - "traefik.enable=true"
+    - "traefik.http.routers.phpmyadmin.rule=Host(`pma.localhost`) || Host(`pma.lvh.me`)"
+    - "traefik.http.routers.phpmyadmin.entrypoints=web"
+    - "traefik.http.services.phpmyadmin.loadbalancer.server.port=80"
+    # - "traefik.http.routers.phpmyadmin.tls=true"
     profiles:
       - phpmyadmin
 

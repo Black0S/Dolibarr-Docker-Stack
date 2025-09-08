@@ -6,9 +6,11 @@ FROM php:7.4-apache
 RUN apt-get update && apt-get install -y --no-install-recommends \
     zip unzip curl bash git libzip-dev libonig-dev libicu-dev \
     libpng-dev libjpeg-dev libfreetype6-dev libxml2-dev libcurl4-openssl-dev \
+    libc-client-dev libkrb5-dev libssl-dev \
     && docker-php-ext-configure gd --with-jpeg --with-freetype \
+    && docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
     && docker-php-ext-install -j$(nproc) \
-        mysqli pdo pdo_mysql zip intl opcache calendar gd bcmath soap \
+        mysqli pdo pdo_mysql zip intl opcache calendar gd bcmath soap imap \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # -------------------

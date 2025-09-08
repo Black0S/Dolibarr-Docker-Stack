@@ -35,7 +35,7 @@ Un environnement de développement local **complet, flexible et performant** pou
 - **Reverse Proxy Automatisé** : Traefik pour une gestion transparente des routes et du HTTPS local.
 - **Serveur Web au Choix** : Flexibilité maximale avec les profils Docker Compose : `nginx`, `apache`, `caddy`, et `lighttpd`.
 - **PHP-FPM Optimisé** : Services PHP découplés pour des performances accrues avec Nginx, Caddy et Lighttpd.
-- **Base de Données Robuste** : MariaDB, la base de données open-source recommandée pour Dolibarr, ou bien MySQL.
+- **Base de Données Robuste** : MariaDB, la base de données open-source recommandée pour Dolibarr, MySQL ou bien PostgreSQL.
 - **Gestion de Base de Données** : Accès facile via phpMyAdmin (profil optionnel).
 - **Structure Claire et Modulaire** : Organisation logique des fichiers de configuration, des sources et des modules personnalisés.
 

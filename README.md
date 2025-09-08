@@ -7,7 +7,7 @@
 [![phpMyAdmin](https://img.shields.io/badge/phpMyAdmin-purple)](https://www.phpmyadmin.net/) 
 [![MariaDB](https://img.shields.io/badge/MariaDB-teal)](https://mariadb.org/) 
 [![MySQL](https://img.shields.io/badge/MySQL-teal)](https://www.mysql.com/) 
-[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-green)](https://www.postgresql.org/) 
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-teal)](https://www.postgresql.org/) 
 [![Apache](https://img.shields.io/badge/Apache-grey)](https://httpd.apache.org/) 
 [![Nginx](https://img.shields.io/badge/Nginx-grey)](https://nginx.org/) 
 [![Caddy](https://img.shields.io/badge/Caddy-grey)](https://caddyserver.com/) 

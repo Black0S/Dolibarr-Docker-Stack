@@ -24,17 +24,17 @@ Un environnement de développement local **complet, flexible et performant** pou
   - [Installation](#installation)
   - [Configuration](#configuration)
   - [Lancement](#lancement)
-- [Pas d’installation IMAP](#-pas-d’installation-IMAP)
+- [Pas d’installation IMAP](#pas-dinstallation-imap)
   - [Raison](#raison)
   - [À quoi sert IMAP ?](#à-quoi-sert-imap-)
   - [Conséquence](#conséquence)
   - [Évolution](#évolution)
-- [⚙️ Utilisation](#️-utilisation)
+- [⚙️ Utilisation](#⚙️-utilisation)
   - [Accès aux services](#accès-aux-services)
   - [Gestion de la stack](#gestion-de-la-stack)
-- [⚖️ Comparatif des Serveurs Web & Base de Données](#️-comparatif-des-serveurs-web--base-de-données)
-- [🗄️ Gestion de base de données (hors phpMyAdmin)](#️-gestion-de-base-de-données-hors-phpmyadmin)
-- [🤝 Contribution](#-contribution)
+- [⚖️ Comparatif des Serveurs Web & Base de Données](#⚖️-comparatif-des-serveurs-web--base-de-données)
+- [🗄️ Gestion de base de données (hors phpMyAdmin)](#🗄️-gestion-de-base-de-données-hors-phpmyadmin)
+- [🤝 Contribution](#🤝-contribution)
 
 ## ✨ Fonctionnalités
 

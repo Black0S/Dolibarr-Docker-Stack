@@ -1,6 +1,17 @@
 # 🚀 Dolibarr Docker Stack
 
-[![Dolibarr](https://img.shields.io/badge/Dolibarr-blue)](https://www.dolibarr.org/) [![Docker](https://img.shields.io/badge/Docker-blue)](https://www.docker.com/) [![Traefik](https://img.shields.io/badge/Traefik-blue)](https://traefik.io/) [![PHP](https://img.shields.io/badge/PHP-8.4_|_8.2|_7.4-blue.svg)](https://www.php.net/)
+[![Dolibarr](https://img.shields.io/badge/Dolibarr-blue)](https://www.dolibarr.org/) 
+[![Docker](https://img.shields.io/badge/Docker-blue)](https://www.docker.com/) 
+[![Traefik](https://img.shields.io/badge/Traefik-blue)](https://traefik.io/) 
+[![PHP](https://img.shields.io/badge/PHP-8.4_|_8.2|_7.4-blue.svg)](https://www.php.net/) 
+[![MariaDB](https://img.shields.io/badge/MariaDB-blue)](https://mariadb.org/) 
+[![MySQL](https://img.shields.io/badge/MySQL-blue)](https://www.mysql.com/) 
+[![Nginx](https://img.shields.io/badge/Nginx-blue)](https://nginx.org/) 
+[![Apache](https://img.shields.io/badge/Apache-blue)](https://httpd.apache.org/) 
+[![Caddy](https://img.shields.io/badge/Caddy-blue)](https://caddyserver.com/) 
+[![Lighttpd](https://img.shields.io/badge/Lighttpd-blue)](https://www.lighttpd.net/) 
+[![phpMyAdmin](https://img.shields.io/badge/phpMyAdmin-blue)](https://www.phpmyadmin.net/)
+
 
 Un environnement de développement local **complet, flexible et performant** pour **Dolibarr ERP/CRM**, propulsé par Docker et Traefik. Choisissez votre serveur web (Nginx, Apache, Caddy, Lighttpd) et lancez votre stack en une seule commande.
 

@@ -114,9 +114,9 @@ Ce choix n’est pas définitif :
 
 ### Accès aux services
 
-- **Traefik** : [http://localhost:8080](http://localhost:8080)
-- **Dolibarr** : [https://localhost](https://localhost)
-- **phpMyAdmin** : [https://pma.localhost](https://pma.localhost)
+- **Traefik** : [http://localhost:8080/dashboard/](http://localhost:8080/dashboard/)
+- **Dolibarr** : [http://localhost/install/index.php](http://localhost/install/index.php)
+- **phpMyAdmin** : [http://pma.localhost/](http://pma.localhost/)
 
 Lors du premier accès à Dolibarr, suivez l'assistant d'installation. Le fichier de configuration `conf.php` sera automatiquement créé dans le dossier `conf/` à la racine du projet.
 

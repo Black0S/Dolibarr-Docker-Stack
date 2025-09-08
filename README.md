@@ -80,6 +80,31 @@ Placez-vous dans le dossier `dolibarr-stack/` et exécutez l'une des commandes c
 | **Caddy**   | `docker-compose --profile caddy up -d`       | `docker-compose --profile caddy --profile phpmyadmin up -d`    |
 | **Lighttpd**| `docker-compose --profile lighttpd up -d`    | `docker-compose --profile lighttpd --profile phpmyadmin up -d` |
 
+## ⚠️ Alerte : pas d’installation IMAP
+
+> 🚨 **Attention** : la bibliothèque **IMAP** n’est **pas installée** dans cette stack Docker.
+
+### Raison
+- Les librairies IMAP posent problème avec certaines versions récentes de **PHP** :  
+  - Certaines extensions ont été **dépréciées ou supprimées**.  
+  - La compatibilité varie selon l’OS (par exemple : disponibles sous Windows, absentes ou instables sous macOS Apple Silicon).  
+- Cela entraîne des **bugs à l’installation** et des comportements instables.  
+
+### À quoi sert IMAP ?
+- **IMAP (Internet Message Access Protocol)** permet à Dolibarr (et plus largement à PHP) de :  
+  - Se connecter directement à une **boîte mail** (Gmail, Exchange, IMAP d’un serveur d’entreprise, etc.).  
+  - Lire et traiter les **mails entrants** pour en faire, par exemple, des **tickets** ou des **messages internes**.  
+  - Synchroniser les mails sans les supprimer du serveur (contrairement à POP3).  
+- Dans Dolibarr, cela peut être utilisé notamment par le **module E-Mail/Support** pour automatiser la récupération des courriels.  
+
+### Conséquence
+Par sécurité et pour assurer une compatibilité maximale, **IMAP est désactivé par défaut** lors de l’installation de cette stack.
+
+### Évolution
+Ce choix n’est pas définitif :  
+- La situation dépend des futures versions de **PHP** et de la disponibilité des librairies IMAP.  
+- Dès que le problème sera **clairement résolu et stabilisé**, la stack sera **mise à jour** afin de réintégrer IMAP proprement.  
+
 ## ⚙️ Utilisation
 
 ### Accès aux services

@@ -24,7 +24,7 @@ Un environnement de développement local **complet, flexible et performant** pou
   - [Installation](#installation)
   - [Configuration](#configuration)
   - [Lancement](#lancement)
-- [⚠️ Alerte : pas d’installation IMAP](#-Alerte-:-pas-d’installation-IMAP)
+- [⚠️ Alerte : pas d’installation IMAP](#-⚠️-Alerte-:-pas-d’installation-IMAP)
   - [Raison](#raison)
   - [À quoi sert IMAP ?](#à-quoi-sert-imap-)
   - [Conséquence](#conséquence)

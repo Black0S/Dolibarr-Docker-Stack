@@ -13,7 +13,7 @@
 [![Caddy](https://img.shields.io/badge/Caddy-grey)](https://caddyserver.com/) 
 [![Lighttpd](https://img.shields.io/badge/Lighttpd-grey)](https://www.lighttpd.net/)
 
-Un environnement de développement local **complet, flexible et performant** pour **Dolibarr ERP/CRM**, propulsé par Docker et Traefik. Choisissez votre serveur web (Nginx, Apache, Caddy, Lighttpd) et lancez votre stack en une seule commande.
+Un environnement de développement local **complet, flexible et performant** pour **Dolibarr ERP/CRM**, propulsé par Docker et Traefik. Choisissez votre base de donnée (MariaDB, MySQL, PostgreSQL), serveur web (Nginx, Apache, Caddy, Lighttpd) et lancez votre stack en une seule commande.
 
 ## 📖 Table des matières
 

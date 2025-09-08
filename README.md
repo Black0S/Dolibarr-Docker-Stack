@@ -13,7 +13,7 @@
 [![Caddy](https://img.shields.io/badge/Caddy-grey)](https://caddyserver.com/) 
 [![Lighttpd](https://img.shields.io/badge/Lighttpd-grey)](https://www.lighttpd.net/)
 
-Un environnement de développement local **complet, flexible et performant** pour **Dolibarr ERP/CRM**, propulsé par Docker et Traefik. Choisissez votre base de donnée (MariaDB, MySQL, PostgreSQL), serveur web (Nginx, Apache, Caddy, Lighttpd) et lancez votre stack en une seule commande.
+Un environnement de développement local **complet, flexible et performant** pour **Dolibarr ERP/CRM**, propulsé par Docker et Traefik. Choisissez votre version PHP (8.4, 8.2, 7.4), base de donnée (MariaDB, MySQL, PostgreSQL), serveur web (Nginx, Apache, Caddy, Lighttpd) et lancez votre stack en une seule commande.
 
 ## 📖 Table des matières
 
@@ -123,8 +123,6 @@ Lors du premier accès à Dolibarr, suivez l'assistant d'installation. Le fichie
 | **MySQL**      | Large communauté, très compatible           | Licence moins libre, un peu plus lourd    |
 | **PostgreSQL** | Très robuste, transactions ACID, extensions | Plus complexe pour les débutants          |
 
-
-
 ## 🗄️ Gestion de base de données (hors phpMyAdmin)
 
 | Application                                                               | OS             | Licence            | Bases compatibles                                            |
@@ -133,7 +131,6 @@ Lors du premier accès à Dolibarr, suivez l'assistant d'installation. Le fichie
 | [DBeaver](https://dbeaver.io/)                                            | Windows, MacOS | Gratuit / Freemium | MySQL, MariaDB, PostgreSQL, Oracle, SQL Server, SQLite, etc. |
 | [DbVisualizer](https://www.dbvis.com/)                                    | Windows, MacOS | Freemium           | MySQL, MariaDB, PostgreSQL, Oracle, SQL Server               |
 | [Sequel Ace](https://apps.apple.com/fr/app/sequel-ace/id1518036000?mt=12) | MacOS          | Gratuit            | MySQL, MariaDB                                               |
-
 
 ## 🤝 Contribution
 

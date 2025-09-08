@@ -5,7 +5,7 @@ services:
   # Traefik : reverse proxy HTTPS
   # -------------------
   traefik:
-    image: traefik:latest
+    image: traefik:${TRAEFIK_VERSION}
     platform: "linux/${ARCH}"
     command:
       - "--api.insecure=true"

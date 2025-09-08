@@ -17,7 +17,7 @@ Un environnement de développement local **complet, flexible et performant** pou
   - [Accès aux services](#accès-aux-services)
   - [Gestion de la stack](#gestion-de-la-stack)
 - [⚖️ Comparatif des Serveurs Web & Base de Données](#️-comparatif-des-serveurs-web--base-de-données)
-- [🗄️ Gestion de base de données (hors phpMyAdmin)](#️-applications-de-gestion-de-base-de-données-hors-phpmyadmin)
+- [🗄️ Gestion de base de données (hors phpMyAdmin)](#️-gestion-de-base-de-données-hors-phpmyadmin)
 - [🤝 Contribution](#-contribution)
 
 ## ✨ Fonctionnalités
@@ -113,12 +113,12 @@ Lors du premier accès à Dolibarr, suivez l'assistant d'installation. Le fichie
 
 ## 🗄️ Gestion de base de données (hors phpMyAdmin)
 
-| Application / OS / Licence                                          | Bases compatibles                                            | Idéal pour…                                                      |
-|---------------------------------------------------------------------|--------------------------------------------------------------|------------------------------------------------------------------|
-| [HeidiSQL](https://www.heidisql.com/) – Windows / Gratuit           | MySQL, MariaDB, PostgreSQL, SQL Server                       | Utilisateurs Windows qui veulent un outil rapide et léger        |
-| [DBeaver](https://dbeaver.io/) – Windows, macOS / Gratuit-Freemium  | MySQL, MariaDB, PostgreSQL, Oracle, SQL Server, SQLite, etc. | Multi-OS, équipes travaillant sur plusieurs types de bases       |
-| [DbVisualizer](https://www.dbvis.com/) – Windows, macOS / Freemium  | MySQL, MariaDB, PostgreSQL, Oracle, SQL Server               | Professionnels ou développeurs ayant besoin d’une interface avancée multi-base |
-| [Sequel Ace](https://apps.apple.com/fr/app/sequel-ace/id1518036000?mt=12) – macOS / Gratuit | MySQL, MariaDB                       | Utilisateurs macOS qui veulent un outil simple et performant     |
+| Application                                                               | OS               | Licence          | Bases compatibles                                            | Idéal pour…                                                      |
+|---------------------------------------------------------------------------|------------------|------------------|--------------------------------------------------------------|------------------------------------------------------------------|
+| [HeidiSQL](https://www.heidisql.com/)                                     | Windows          | Gratuit          | MySQL, MariaDB, PostgreSQL, SQL Server                       | Utilisateurs Windows qui veulent un outil rapide et léger        |
+| [DBeaver](https://dbeaver.io/)                                            | Windows, MacOS   | Gratuit-Freemium | MySQL, MariaDB, PostgreSQL, Oracle, SQL Server, SQLite, etc. | Multi-OS, équipes travaillant sur plusieurs types de bases       |
+| [DbVisualizer](https://www.dbvis.com/)                                    | Windows, MacOS   | Freemium         | MySQL, MariaDB, PostgreSQL, Oracle, SQL Server               | Professionnels ou développeurs ayant besoin d’une interface avancée multi-base |
+| [Sequel Ace](https://apps.apple.com/fr/app/sequel-ace/id1518036000?mt=12) | MacOS            | Gratuit          | MySQL, MariaDB                                               | Utilisateurs macOS qui veulent un outil simple et performant     |
 
 ## 🤝 Contribution
 

@@ -2,7 +2,7 @@
 
 [![Dolibarr](https://img.shields.io/badge/Dolibarr-blue)](https://www.dolibarr.org/) 
 [![Docker](https://img.shields.io/badge/Docker-blue)](https://www.docker.com/) 
-[![PHP](https://img.shields.io/badge/PHP-_8.4,3,2,1_|_7.4_-blue)](https://www.php.net/) 
+[![PHP](https://img.shields.io/badge/PHP-_8.4_..._.1_|_7.4_-blue)](https://www.php.net/) 
 [![Traefik](https://img.shields.io/badge/Traefik-purple)](https://traefik.io/) 
 [![phpMyAdmin](https://img.shields.io/badge/phpMyAdmin-purple)](https://www.phpmyadmin.net/) 
 [![MariaDB](https://img.shields.io/badge/MariaDB-teal)](https://mariadb.org/) 

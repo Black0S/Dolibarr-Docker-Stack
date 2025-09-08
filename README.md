@@ -103,7 +103,7 @@ Placez-vous dans le dossier `dolibarr-stack/` et exécutez l'une des commandes c
 - Dans Dolibarr, cela peut être utilisé notamment par le **module E-Mail/Support** pour automatiser la récupération des courriels.  
 
 ### Conséquence
-Par sécurité et pour assurer une compatibilité maximale, **IMAP est désactivé par défaut** lors de l’installation de cette stack.
+Par sécurité et pour assurer une compatibilité maximale, **IMAP n'es pas installét** lors de l’installation de cette stack.
 
 ### Évolution
 Ce choix n’est pas définitif :  

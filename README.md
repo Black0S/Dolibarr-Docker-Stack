@@ -24,7 +24,7 @@ Un environnement de développement local **complet, flexible et performant** pou
   - [Installation](#installation)
   - [Configuration](#configuration)
   - [Lancement](#lancement)
-- [⚠️ Alerte : pas d’installation IMAP](#-⚠️-Alerte-:-pas-d’installation-IMAP)
+- [Pas d’installation IMAP](#-pas-d’installation-IMAP)
   - [Raison](#raison)
   - [À quoi sert IMAP ?](#à-quoi-sert-imap-)
   - [Conséquence](#conséquence)
@@ -85,7 +85,7 @@ Placez-vous dans le dossier `dolibarr-stack/` et exécutez l'une des commandes c
 | **Caddy**   | `docker-compose --profile caddy up -d`       | `docker-compose --profile caddy --profile phpmyadmin up -d`    |
 | **Lighttpd**| `docker-compose --profile lighttpd up -d`    | `docker-compose --profile lighttpd --profile phpmyadmin up -d` |
 
-## ⚠️ Alerte : pas d’installation IMAP
+## Pas d’installation IMAP
 
 > 🚨 **Attention** : la bibliothèque **IMAP** n’est **pas installée** dans cette stack Docker.
 

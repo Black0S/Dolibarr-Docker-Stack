@@ -94,7 +94,7 @@ Lors du premier accès à Dolibarr, suivez l'assistant d'installation. Le fichie
     docker-compose --profile caddy up -d
     ```
 
-## ⚖️ Comparatif des Serveurs Web
+## ⚖️ Comparatif des Serveurs Web & Base de Données
 
 | Serveur   | Avantages                                       | Inconvénients                               | Idéal pour...                               |
 |-----------|-------------------------------------------------|---------------------------------------------|---------------------------------------------|

@@ -16,7 +16,7 @@ Un environnement de développement local **complet, flexible et performant** pou
 - [⚙️ Utilisation](#️-utilisation)
   - [Accès aux services](#accès-aux-services)
   - [Gestion de la stack](#gestion-de-la-stack)
-- [⚖️ Comparatif des Serveurs Web](#️-comparatif-des-serveurs-web)
+- [⚖️ Comparatif des Serveurs Web & Base de Données](#️-comparatif-des-serveurs-web--base-de-données)
 - [🤝 Contribution](#-contribution)
 
 ## ✨ Fonctionnalités

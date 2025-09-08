@@ -1,15 +1,16 @@
 # 🚀 Dolibarr Docker Stack
 
-[![Dolibarr](https://img.shields.io/badge/Dolibarr-blue)](https://www.dolibarr.org/)
-[![Docker](https://img.shields.io/badge/Docker-blue)](https://www.docker.com/)
-[![PHP](https://img.shields.io/badge/PHP-8.4_|_8.2_|_7.4-blue)](https://www.php.net/)
-[![Traefik](https://img.shields.io/badge/Traefik-purple)](https://traefik.io/)
-[![phpMyAdmin](https://img.shields.io/badge/phpMyAdmin-purple)](https://www.phpmyadmin.net/)
-[![MariaDB](https://img.shields.io/badge/MariaDB-teal)](https://mariadb.org/)
-[![MySQL](https://img.shields.io/badge/MySQL-teal)](https://www.mysql.com/)
-[![Apache](https://img.shields.io/badge/Apache-grey)](https://httpd.apache.org/)
-[![Nginx](https://img.shields.io/badge/Nginx-grey)](https://nginx.org/)
-[![Caddy](https://img.shields.io/badge/Caddy-grey)](https://caddyserver.com/)
+[![Dolibarr](https://img.shields.io/badge/Dolibarr-blue)](https://www.dolibarr.org/) 
+[![Docker](https://img.shields.io/badge/Docker-blue)](https://www.docker.com/) 
+[![PHP](https://img.shields.io/badge/PHP-8.4_|_8.2_|_7.4-blue)](https://www.php.net/) 
+[![Traefik](https://img.shields.io/badge/Traefik-purple)](https://traefik.io/) 
+[![phpMyAdmin](https://img.shields.io/badge/phpMyAdmin-purple)](https://www.phpmyadmin.net/) 
+[![MariaDB](https://img.shields.io/badge/MariaDB-teal)](https://mariadb.org/) 
+[![MySQL](https://img.shields.io/badge/MySQL-teal)](https://www.mysql.com/) 
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-green)](https://www.postgresql.org/) 
+[![Apache](https://img.shields.io/badge/Apache-grey)](https://httpd.apache.org/) 
+[![Nginx](https://img.shields.io/badge/Nginx-grey)](https://nginx.org/) 
+[![Caddy](https://img.shields.io/badge/Caddy-grey)](https://caddyserver.com/) 
 [![Lighttpd](https://img.shields.io/badge/Lighttpd-grey)](https://www.lighttpd.net/)
 
 Un environnement de développement local **complet, flexible et performant** pour **Dolibarr ERP/CRM**, propulsé par Docker et Traefik. Choisissez votre serveur web (Nginx, Apache, Caddy, Lighttpd) et lancez votre stack en une seule commande.

@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   # -------------------
-  # Traefik : reverse proxy HTTPS
+  # Traefik : reverse proxy HTTP/S
   # -------------------
   traefik:
     image: traefik:${TRAEFIK_VERSION}

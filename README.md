@@ -114,7 +114,7 @@ Ce choix n’est pas définitif :
 
 ### Accès aux services
 
-- **Traefik** : [https://localhost:8080](https://localhost:8080)
+- **Traefik** : [http://localhost:8080](http://localhost:8080)
 - **Dolibarr** : [https://localhost](https://localhost)
 - **phpMyAdmin** : [https://pma.localhost](https://pma.localhost)
 

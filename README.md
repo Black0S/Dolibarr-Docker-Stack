@@ -49,12 +49,22 @@ Un environnement de développement local **complet, flexible et performant** pou
 
 ```
 .
-├── dolibarr-core/      # 📚 Sources de Dolibarr (à ajouter manuellement)
-├── dolibarr-stack/     # ⚙️ Cœur de la stack (docker-compose.yaml, .env)
-├── custom/             # 🧩 Modules Dolibarr personnalisés
-├── conf/               # 📄 Fichier conf.php de Dolibarr (généré à l'installation)
-├── php-dockerfile/     # 🐳 Dockerfiles pour les images PHP
-└── web-server/         # 🌐 Configurations des serveurs web (Nginx, Apache, etc.)
+├── dolibarr-core/              # 📚 Sources de Dolibarr (à ajouter manuellement)
+├── dolibarr-stack/             # ⚙️ Cœur de la stack (docker-compose.yaml, .env)
+│   ├── docker-compose.yaml     # 🐳 Configuration Docker Compose
+│   └── .env                    # 🌐 Variables d'environnement
+├── custom/                     # 🧩 Modules Dolibarr personnalisés
+├── conf/                       # 📄 Fichier conf.php de Dolibarr (généré à l'installation)
+├── php-dockerfile/             # 🐳 Dockerfiles pour les images PHP
+│   ├── php-8.4.Dockerfile      # 🐘 Dockerfile PHP 8.4
+│   ├── php-8.4-fpm.Dockerfile  # ⚡ Dockerfile PHP 8.4-FPM
+│   └── etc...                  # 🗂 Autres Dockerfiles PHP
+└── web-server/                 # 🌐 Configurations des serveurs web
+    ├── apache/                 # 🔵 Configuration Apache 
+    ├── caddy/                  # 🟠 Configuration Caddy
+    ├── lighttpd/               # 🟡 Configuration Lighttpd
+    └── nginx/                  # 🟢 Configuration Nginx
+
 ```
 
 ## 🚀 Guide de Démarrage
@@ -62,6 +72,7 @@ Un environnement de développement local **complet, flexible et performant** pou
 ### Prérequis
 
 - [Docker](https://www.docker.com/get-started)
+- [OrbStack](https://orbstack.dev)
 
 ### Installation
 
@@ -78,19 +89,19 @@ Le fichier `dolibarr-stack/.env` est le centre de votre configuration.
 
 Placez-vous dans le dossier `dolibarr-stack/` et exécutez l'une des commandes ci-dessous selon votre choix de serveur web.
 
-| Serveur Web | Commande de base                             | Avec phpMyAdmin                                                |
-|-------------|----------------------------------------------|----------------------------------------------------------------|
-| **Nginx**   | `docker-compose --profile nginx up -d`       | `docker-compose --profile nginx --profile phpmyadmin up -d`    |
-| **Apache**  | `docker-compose --profile apache up -d`      | `docker-compose --profile apache --profile phpmyadmin up -d`   |
-| **Caddy**   | `docker-compose --profile caddy up -d`       | `docker-compose --profile caddy --profile phpmyadmin up -d`    |
-| **Lighttpd**| `docker-compose --profile lighttpd up -d`    | `docker-compose --profile lighttpd --profile phpmyadmin up -d` |
+| Serveur Web | Commande de base                         | Avec phpMyAdmin                                               |
+|-------------|------------------------------------------|---------------------------------------------------------------|
+| **Nginx**   | `docker-compose --profile nginx up -d`   | `docker-compose --profile nginx --profile phpmyadmin up -d`   |
+| **Apache**  | `docker-compose --profile apache up -d`  | `docker-compose --profile apache --profile phpmyadmin up -d`  |
+| **Caddy**   | `docker-compose --profile caddy up -d`   | `docker-compose --profile caddy --profile phpmyadmin up -d`   |
+| **Lighttpd**| `docker-compose --profile lighttpd up -d`| `docker-compose --profile lighttpd --profile phpmyadmin up -d`|
 
 ## Pas d’installation IMAP
 
 > 🚨 **Attention** : la bibliothèque **IMAP** n’est **pas installée** dans cette stack Docker.
 
 ### Raison
-- Les librairies IMAP posent problème avec certaines versions récentes de **PHP** :  
+- Les librairies IMAP posent problème avec certaines versions récentes de **PHP** : 
   - Certaines extensions ont été **dépréciées ou supprimées**.  
   - La compatibilité varie selon l’OS (par exemple : disponibles sous Windows, absentes ou instables sous macOS Apple Silicon).  
 - Cela entraîne des **bugs à l’installation** et des comportements instables.  
@@ -107,7 +118,7 @@ Par sécurité et pour assurer une compatibilité maximale, **IMAP n'es pas inst
 
 ### Évolution
 Ce choix n’est pas définitif :  
-- La situation dépend des futures versions de **PHP** et de la disponibilité des librairies IMAP.  
+- L’évolution de la situation dépendra des **prochaines versions de PHP** ainsi que de la disponibilité de la **librairie IMAP** ou de son **éventuel successeur**.
 - Dès que le problème sera **clairement résolu et stabilisé**, la stack sera **mise à jour** afin de réintégrer IMAP proprement.  
 
 ## ⚙️ Utilisation
@@ -138,12 +149,12 @@ Lors du premier accès à Dolibarr, suivez l'assistant d'installation. Le fichie
 
 ## ⚖️ Comparatif des Serveurs Web & Base de Données
 
-| Serveur   | Avantages                                           | Inconvénients                               | Idéal pour...                                         |
-|-----------|-----------------------------------------------------|---------------------------------------------|-------------------------------------------------------|
-| **Nginx** | Haute performance, faible consommation mémoire      | Pas de `.htaccess`, configuration globale   | Projets à fort trafic, applications modernes          |
-| **Apache**| Grande compatibilité, support `.htaccess`           | Plus lourd, moins performant sous charge    | Projets legacy, besoin de flexibilité via `.htaccess` |
-| **Caddy** | Configuration simple, HTTPS automatique natif       | Moins répandu, communauté plus petite       | Simplicité et sécurité "out-of-the-box"               |
-| **Lighttpd**| Extrêmement léger, très rapide pour les statiques | Moins de fonctionnalités avancées           | Environnements avec très peu de ressources            |
+| Serveur     | Avantages                                           | Inconvénients                               | Idéal pour...                                         |
+|-------------|-----------------------------------------------------|---------------------------------------------|-------------------------------------------------------|
+| **Nginx**   | Haute performance, faible consommation mémoire      | Pas de `.htaccess`, configuration globale   | Projets à fort trafic, applications modernes          |
+| **Apache**. | Grande compatibilité, support `.htaccess`           | Plus lourd, moins performant sous charge    | Projets legacy, besoin de flexibilité via `.htaccess` |
+| **Caddy**   | Configuration simple, HTTPS automatique natif       | Moins répandu, communauté plus petite       | Simplicité et sécurité "out-of-the-box"               |
+| **Lighttpd**| Extrêmement léger, très rapide pour les statiques   | Moins de fonctionnalités avancées           | Environnements avec très peu de ressources            |
 
 ## ⚖️ Comparatif des Bases de Données
 

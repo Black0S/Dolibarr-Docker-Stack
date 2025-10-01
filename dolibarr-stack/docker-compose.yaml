@@ -137,8 +137,6 @@ services:
       - dbsql
     environment:
       PMA_HOST: dbsql
-      PMA_USER: ${DB_USER}
-      PMA_PASSWORD: ${DB_PASSWORD}
     labels:
     - "traefik.enable=true"
     - "traefik.http.routers.phpmyadmin.rule=Host(`pma.localhost`) || Host(`pma.lvh.me`)"
